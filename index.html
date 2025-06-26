@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kkeshinii S – Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="fade-in">
+    <p class="typing"></p>
+    <img src="image.png" alt="Kkeshinii S" class="profile-pic" />
+    <h1 class="glow-text">KKESHINII S</h1>
+    <p class="subtext">Final Year B.Sc Computer Science with Specialization in Cyber Security</p>
+    <nav class="slide-down">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="about" class="section fade-up">
+      <h2>About Me</h2>
+      <p>I am a final-year B.Sc. Computer Science (Cybersecurity) student with strong programming knowledge and a growing passion for UI/UX design. During internships at Laya Tech and 8 Queens Technology, I gained experience in cybersecurity and software testing. I am eager to continue growing in a dynamic tech environment.</p>
+    </section>
+
+    <section id="experience" class="section fade-up">
+      <h2>Experience</h2>
+      <div class="card">
+        <h3>Software Testing Intern – 8 Queens Technology</h3>
+        <p>Test case writing, bug reporting, UI & regression testing.</p>
+        <h3>Cyber Security Intern – Laya Tech Pvt. Ltd.</h3>
+        <p>Studied vulnerabilities, observed mitigation processes, assisted with security framework analysis.</p>
+        <h3>Committee Member – SRM IST</h3>
+        <p>Managed events, coordinated logistics, and promoted student activities at NEXGEN NURA event.</p>
+      </div>
+    </section>
+
+    <section id="skills" class="section fade-up">
+      <h2>Skills</h2>
+      <div class="skill-bar">
+        <label>Java</label><div class="bar"><div class="fill" style="width: 85%"></div></div>
+        <label>Python</label><div class="bar"><div class="fill" style="width: 85%"></div></div>
+        <label>C++</label><div class="bar"><div class="fill" style="width: 90%"></div></div>
+        <label>C</label><div class="bar"><div class="fill" style="width: 95%"></div></div>
+        <label>HTML / CSS / JS</label><div class="bar"><div class="fill" style="width: 80%"></div></div>
+        <label>MS Office</label><div class="bar"><div class="fill" style="width: 95%"></div></div>
+        <label>UI/UX</label><div class="bar"><div class="fill" style="width: 85%"></div></div>
+        <label>Cybersecurity</label><div class="bar"><div class="fill" style="width: 80%"></div></div>
+      </div>
+    </section>
+
+    <section id="certifications" class="section fade-up">
+      <h2>Certifications</h2>
+      <ul>
+        <li>Cyber Security Internship – Laya Tech</li>
+        <li>Software Testing Internship – 8 Queens</li>
+        <li>UI/UX – Spark Inventive</li>
+        <li>CompTIA A+ (220-1101) – Cybrary</li>
+      </ul>
+    </section>
+
+    <section id="projects" class="section fade-up">
+      <h2>Projects</h2>
+      <div class="card">
+        <h3>Phishing Awareness Project</h3>
+        <p>Created a demo on social media image breaches to highlight phishing threats.</p>
+        <h3>Mobile App Design</h3>
+        <p>Designed a mobile app using Figma for a student event registration system.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section fade-up">
+      <h2>Contact</h2>
+      <p>Email: keshinisudhakaran@gmail.com</p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/kkeshinii-s/" target="_blank">linkedin.com/in/kkeshinii-s</a></p>
+    </section>
+  </main>
+
+  <footer class="fade-in">
+    <p>&copy; 2025 KKESHINII S</p>
+  </footer>
+
+  <script>
+    const typing = document.querySelector(".typing");
+    const texts = ["Final Year CS Student", "Cybersecurity Enthusiast", "UI/UX Designer"];
+    let i = 0, j = 0, isDeleting = false;
+
+    function type() {
+      if (i < texts.length) {
+        const fullText = texts[i];
+        if (!isDeleting && j <= fullText.length) {
+          typing.innerHTML = fullText.substring(0, j++) + '<span class="cursor">|</span>';
+        } else if (isDeleting && j >= 0) {
+          typing.innerHTML = fullText.substring(0, j--) + '<span class="cursor">|</span>';
+        }
+
+        if (!isDeleting && j === fullText.length) {
+          isDeleting = true;
+          setTimeout(type, 1000);
+        } else if (isDeleting && j === 0) {
+          isDeleting = false;
+          i = (i + 1) % texts.length;
+          setTimeout(type, 500);
+        } else {
+          setTimeout(type, isDeleting ? 50 : 100);
+        }
+      }
+    }
+    type();
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
